@@ -1,21 +1,21 @@
 <?php
-
+require_once 'framework/autoload.php';
 if( isset($_GET['q']) ){
 	$q = explode('/', $_GET['q']);
 } else {
 	$q[0] = '';
 }
-
+//echo "tesdt";
 //current controller that displays page
 $curController; 
 
 switch( $q[0] ){
 	case '': {		
-		require_once('controllers/news.php');
-		$curController = new NewsController();
+		require_once('controllers/test.php');
+		$curController = new TestController();
 		break;
 	}
-	case 'admin': {		
+	/*case 'admin': {		
 		require_once('controllers/admin.php');
 		$curController = new AdminController();
 		break;
@@ -44,7 +44,7 @@ switch( $q[0] ){
 		require_once('controllers/guest.php');
 		$curController = new GuestController();
 		break;
-	}
+	}*/
 }
 
 session_start();

@@ -12,8 +12,8 @@ final class App
     }
 
     public function getMysqli(){
-    	global $db;
-    	$mysqli = new mysqli($db['server'], $db['user'], $db['password'], $db['db']);
+    	global $config_db;
+    	$mysqli = new mysqli($config_db['server'], $config_db['user'], $config_db['password'], $config_db['db']);
     	mysqli_set_charset( $mysqli , 'utf-8' );
 		if (mysqli_connect_error()) {
 		    die('Ошибка подключения (' . mysqli_connect_errno() . ') '

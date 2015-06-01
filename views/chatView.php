@@ -19,6 +19,8 @@
 
 		<div id="add_msg">
 			<textarea id="new_msg"></textarea>
+			<input type="text" id="username" value="guest" />
 		</div>
+
 	</body>
 </html>

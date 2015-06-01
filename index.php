@@ -11,9 +11,13 @@ $curController;
 
 switch( $q[0] ){
 	case '': {		
+		require_once('controllers/main.php');
+		$curController = new MainController();
+		break;
+	}
+	case 'project': {		
 		require_once('controllers/project.php');
-		$curController = new ProjectController();
-		$curController->index();
+		$curController = new ProjectController();	
 		break;
 	}
 	case 'chat_api': {
@@ -24,9 +28,10 @@ switch( $q[0] ){
 }
 
 session_start();
-
-/*if( isset( $q[1] ) ){
-	$curController->index($q[1]);
-} else {
-	$curController->index();
-}*/
+if(isset($curController)){
+	if( isset( $q[1] ) ){
+		$curController->index($q[1]);
+	} else {
+		$curController->index();
+	}
+}

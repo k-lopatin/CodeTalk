@@ -9,10 +9,17 @@ class ChatController extends Controller {
 			$this->chatId = $id;
 
 			$chatArr = $this->openChatFileArray();
-			foreach( $chatArr as $msg ){
-				echo $msg.'<br>';
-			}
+			$prevMsgArr = array('', '', '');
+			if($chatArr != -1){
+				foreach( $chatArr as $msg ){
 
+					$msgArr = $this->parseMsg( $msg );
+					$this->msgView( $msgArr, $prevMsgArr );
+
+					$prevMsgArr = $msgArr;
+
+				}
+			}
 		} else {
 			// @todo normal error system
 			echo 'error';
@@ -20,12 +27,33 @@ class ChatController extends Controller {
 
 	} 
 
+	private function msgView( $msgArr, $prevMsgArr ){
+
+		echo '<span class="date">' . $msgArr[0] . '</span> ';
+
+		if( $msgArr[1] != $prevMsgArr[1] ){
+			echo '<span class="name">' . $msgArr[1] . '</span> ';
+		}		
+		echo '<span class="message">' . $msgArr[2] . '</span> ';
+
+		echo '<div class="clear"></div>';
+
+	}
+
+	private function parseMsg( $msg ){
+		$msgArr = explode( ' ', $msg, 3 );
+
+		$msgArr[0] = date('H:i:s', $msgArr[0]);
+
+		return $msgArr;
+	}
+
 	function addMessage( $id = '' ){
 
 		if($id != ''){
 			$this->chatId = $id;
 
-			$username = 'guest';
+			$username = $_POST['username'];
 			$time = time();
 
 			$msg = $_POST['message'];
@@ -55,7 +83,10 @@ class ChatController extends Controller {
 		global $config_chat;
 		$filename = $config_chat['chats_folder'] . $this->chatId . '.txt';
 
-		return file( $filename );
+		if(file_exists($filename))
+			return file( $filename );
+		else
+			return -1;
 	}	
 
 	function openChatFileToWrite( $page = 1 ){

@@ -8,5 +8,5 @@ $config_db = array(
 	);
 
 $config_chat = array(
-		'chats_folder' => $_SERVER['DOCUMENT_ROOT'].'file_db/chat/'
+		'chats_folder' => $_SERVER['DOCUMENT_ROOT'].'/file_db/chat/'
 	);

@@ -1,10 +1,3 @@
 1433095625 Kostya Test message
 1433095625 Pasha Test message
 1433098269 guest   Test
-
-1433098413 guest I need some time
-
-1433098420 guest Help me
-1433098442 guest What can I do?
-1433098445 guest I need time
-1433098462 guest Hey bitches

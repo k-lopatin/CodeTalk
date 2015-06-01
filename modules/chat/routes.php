@@ -5,14 +5,14 @@ function get($q){
 		case 'get': {
 			require_once('controllers/chat.php');
 			$curController = new ChatController();
-			$curController->index('sdf');
+			$curController->index($_GET['curr_id']);
 			break;
 		}
 
 		case 'add': {
 			require_once('controllers/chat.php');
 			$curController = new ChatController();
-			$curController->addMessage('sdf');
+			$curController->addMessage($q[2]);
 			break;
 		}
 	}

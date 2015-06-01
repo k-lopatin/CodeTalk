@@ -2,7 +2,9 @@ $(document).ready(function(){
 
 	//update chat
 	chatUpdateInt = setInterval( function(){
-		$.get( "/chat_api/get", function(msg_view){
+		var curr_id = window.location.href;
+		curr_id = curr_id.split('/');
+		$.get( "/chat_api/get?curr_id="+curr_id[4], function(msg_view){
 			$('#chat_box').html( msg_view );
 		} )
 	}, 300 );
@@ -12,9 +14,10 @@ $(document).ready(function(){
 	$('#new_msg').bind("enterKey", function(e){
 		msg = $('#new_msg').val();
 		$('#new_msg').val('');
-
+		var curr_id = window.location.href;
+		curr_id = curr_id.split('/');
    		if( msg != '' ){
-   			$.post( "/chat_api/add", 
+   			$.post("/chat_api/add/"+curr_id[4], 
    				{message: msg } );
    		}
 	});

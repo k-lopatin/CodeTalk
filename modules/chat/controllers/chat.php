@@ -9,10 +9,11 @@ class ChatController extends Controller {
 			$this->chatId = $id;
 
 			$chatArr = $this->openChatFileArray();
-			foreach( $chatArr as $msg ){
-				echo $msg.'<br>';
+			if($chatArr != -1){
+				foreach( $chatArr as $msg ){
+					echo $msg.'<br>';
+				}
 			}
-
 		} else {
 			// @todo normal error system
 			echo 'error';
@@ -55,7 +56,10 @@ class ChatController extends Controller {
 		global $config_chat;
 		$filename = $config_chat['chats_folder'] . $this->chatId . '.txt';
 
-		return file( $filename );
+		if(file_exists($filename))
+			return file( $filename );
+		else
+			return -1;
 	}	
 
 	function openChatFileToWrite( $page = 1 ){

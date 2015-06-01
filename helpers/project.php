@@ -5,7 +5,6 @@ class projectHelper {
 	public static function createId(){
 		
 		$timeArr = self::timeToArr();
-		print_r( $timeArr );
 
 		$ch1 = chr( ord('a') + rand(0, 25) );
 		$ch2 = chr( ord('a') + ($timeArr[0] + $timeArr[9] + $timeArr[1]) % 25  );

@@ -9,9 +9,15 @@ class ChatController extends Controller {
 			$this->chatId = $id;
 
 			$chatArr = $this->openChatFileArray();
+			$prevMsgArr = array('', '', '');
 			if($chatArr != -1){
 				foreach( $chatArr as $msg ){
-					echo $msg.'<br>';
+
+					$msgArr = $this->parseMsg( $msg );
+					$this->msgView( $msgArr, $prevMsgArr );
+
+					$prevMsgArr = $msgArr;
+
 				}
 			}
 		} else {
@@ -21,12 +27,33 @@ class ChatController extends Controller {
 
 	} 
 
+	private function msgView( $msgArr, $prevMsgArr ){
+
+		echo '<span class="date">' . $msgArr[0] . '</span> ';
+
+		if( $msgArr[1] != $prevMsgArr[1] ){
+			echo '<span class="name">' . $msgArr[1] . '</span> ';
+		}		
+		echo '<span class="message">' . $msgArr[2] . '</span> ';
+
+		echo '<div class="clear"></div>';
+
+	}
+
+	private function parseMsg( $msg ){
+		$msgArr = explode( ' ', $msg, 3 );
+
+		$msgArr[0] = date('H:i:s', $msgArr[0]);
+
+		return $msgArr;
+	}
+
 	function addMessage( $id = '' ){
 
 		if($id != ''){
 			$this->chatId = $id;
 
-			$username = 'guest';
+			$username = $_POST['username'];
 			$time = time();
 
 			$msg = $_POST['message'];

@@ -26,7 +26,14 @@ class ChatController extends Controller {
 		}
 
 	} 
-
+	function is_update(){
+			$file_time = $this->openTimeFileToWrite();
+			while ( !feof($file_time) ) {
+				$line = fgets($file_time, 16);
+				echo $line;
+			}
+			fclose($file_time);
+	}
 	private function msgView( $msgArr, $prevMsgArr ){
 
 		echo '<span class="date">' . $msgArr[0] . '</span> ';
@@ -61,6 +68,11 @@ class ChatController extends Controller {
 			$str = $time . ' ' . $username . ' ' . $msg;
 
 			$file = $this->openChatFileToWrite();
+			
+			//$file_time = $this->openTimeFileToWrite();
+
+			//fwrite($file_time, $time);
+
 
 			fwrite($file, $str);
 
@@ -95,6 +107,13 @@ class ChatController extends Controller {
 		$filename = $config_chat['chats_folder'] . $this->chatId . '.txt';
 
 		return fopen( $filename, "a" );
+	}
+
+	function openTimeFileToWrite(){
+		global $config_chat;
+		$filename = $config_chat['chats_folder'] . $this->chatId . '_last.txt';
+
+		return fopen( $filename, "r+" );
 	}
 
 	function closeChatFile( $file ){

@@ -2,10 +2,10 @@
 
 function get($q){
 	switch($q[1]){
-		case 'time': {
+		case 'is_update': {
 			require_once('controllers/chat.php');
 			$curController = new ChatController();
-			$curController->is_update();
+			$curController->is_update($_GET['curr_id']);
 			break;
 		}
 		case 'get': {

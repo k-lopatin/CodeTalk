@@ -24,7 +24,9 @@
 		<div id="chat_box">
 
 		</div>
-
+		<div class="is_write">
+			<img src="/assets/images/pencil.png"></img>
+		</div>
 		<div id="add_msg">
 			<textarea id="new_msg"></textarea>
 				<input type="text" id="username" value="<?= $_SESSION['curr_login']?>" />

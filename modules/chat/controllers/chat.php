@@ -107,5 +107,35 @@ class ChatController extends Controller {
 	function updateLogin( $new_login ){
 		$_SESSION['curr_login'] = $new_login;
 	}
+
+	function is_write($login, $val){
+		global $config_chat;
+		$filename = $config_chat['chats_folder'].'is_write/'.$login.'.txt';
+		$f = fopen( $filename, "a" );
+
+		ftruncate($f, 0);
+
+		fwrite($f, $val);
+
+		fclose($f);
+	}
+
+	function check_write($login){
+		global $config_chat;
+
+		if ($handle = opendir($config_chat['chats_folder'].'is_write/')) {
+
+		    while (false !== ($entry = readdir($handle))) {
+
+		        if($entry == $login.'.txt'){
+		        	$filename = $config_chat['chats_folder'].'is_write/'.$entry;
+		        	$val = file_get_contents($filename);
+		        	echo $val;
+		        }
+		    }
+
+		    closedir($handle);
+		}
+	}
 }
 

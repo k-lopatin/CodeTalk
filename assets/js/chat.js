@@ -10,7 +10,40 @@ $(document).ready(function(){
 			chat_box = document.getElementById('chat_box');
 			chat_box.scrollTop = chat_box.scrollHeight;
 
-		} )
+		} );
+		var wr_val;
+		if($('#new_msg').val()=='')
+   			wr_val = 0;
+		else
+			wr_val = 1;
+		$.post("/chat_api/write/"+curr_id[4], 
+   				{ login: $( "#username" ).val(),
+   				  value: wr_val } );
+
+		$.get( "/chat_api/check_write?curr_login="+$( "#username" ).val(), function(data){
+			//$('.is_write').empty();
+			if(data == 1){
+				$('.is_write img').show();
+				$( ".is_write img" ).animate({
+				    opacity: 0,
+				    marginLeft: "+50",
+				  }, 2000, function() {
+			  	});
+			  	$( ".is_write img" ).animate({
+				    opacity: 1,
+				    marginLeft: "0",
+				  }, 0, function() {
+			  	});
+			}
+			else{
+				$('.is_write img').hide();
+				$( ".is_write img" ).stop();
+				$( ".is_write img" ).css('marginLeft', '0');
+				$( ".is_write img" ).css('opacity', '1');
+			}
+
+		} );
+
 	}, 250 );
 
 
@@ -49,7 +82,7 @@ $(document).ready(function(){
    				{ new_login: login
    				 });   	
    		}	
-   		
+
 	});
 
 })

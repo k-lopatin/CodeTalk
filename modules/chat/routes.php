@@ -18,8 +18,19 @@ function get($q){
 		case 'update_login': {
 			require_once('controllers/chat.php');
 			$curController = new ChatController();
-		$_SESSION['curr_login'] = $_POST['new_login'];
 			$curController->updateLogin($_POST['new_login']);			
+			break;
+		}
+		case 'write':{
+			require_once('controllers/chat.php');
+			$curController = new ChatController();
+			$curController->is_write($_POST['login'], $_POST['value']);	
+			break;
+		}
+		case 'check_write':{
+			require_once('controllers/chat.php');
+			$curController = new ChatController();
+			$curController->check_write($_GET['curr_login']);
 			break;
 		}
 	}

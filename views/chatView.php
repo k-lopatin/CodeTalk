@@ -1,3 +1,11 @@
+<?php 
+	if(!isset($_SESSION)){
+   		session_start();
+	}
+	if(!isset($_SESSION['curr_login'])){
+		$_SESSION['curr_login'] = 'guest';
+	}
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -19,7 +27,7 @@
 
 		<div id="add_msg">
 			<textarea id="new_msg"></textarea>
-			<input type="text" id="username" value="guest" />
+				<input type="text" id="username" value="<?= $_SESSION['curr_login']?>" />
 		</div>
 
 	</body>

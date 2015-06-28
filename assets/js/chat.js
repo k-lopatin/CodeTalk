@@ -39,4 +39,17 @@ $(document).ready(function(){
 	        $(this).trigger("enterKey");
 	    }
 	});
+	$( "#username" ).change(function() {
+ 		login = $( "#username" ).val();
+ 		if(login.length == 0){
+ 			$('#add_msg').append('Нельзя ввести пустой логин');		
+ 		}
+ 		else{
+ 		$.post("/chat_api/update_login", 
+   				{ new_login: login
+   				 });   	
+   		}	
+   		
+	});
+
 })

@@ -15,5 +15,12 @@ function get($q){
 			$curController->addMessage($q[2]);
 			break;
 		}
+		case 'update_login': {
+			require_once('controllers/chat.php');
+			$curController = new ChatController();
+		$_SESSION['curr_login'] = $_POST['new_login'];
+			$curController->updateLogin($_POST['new_login']);			
+			break;
+		}
 	}
 }

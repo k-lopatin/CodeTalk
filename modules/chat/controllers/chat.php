@@ -1,5 +1,8 @@
 <?php
 
+if(!isset($_SESSION)){
+   	session_start();
+}
 class ChatController extends Controller {
 	
 	private $chatId;
@@ -99,6 +102,10 @@ class ChatController extends Controller {
 
 	function closeChatFile( $file ){
 		fclose($file);
+	}
+
+	function updateLogin( $new_login ){
+		$_SESSION['curr_login'] = $new_login;
 	}
 }
 

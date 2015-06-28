@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 require_once 'framework/autoload.php';
 if( isset($_GET['q']) ){
 	$q = explode('/', $_GET['q']);

@@ -127,7 +127,7 @@ class ChatController extends Controller {
 
 		    while (false !== ($entry = readdir($handle))) {
 
-		        if($entry == $login.'.txt'){
+		        if($entry != $login.'.txt'){
 		        	$filename = $config_chat['chats_folder'].'is_write/'.$entry;
 		        	$val = file_get_contents($filename);
 		        	echo $val;

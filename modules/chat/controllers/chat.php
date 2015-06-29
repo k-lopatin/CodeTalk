@@ -135,25 +135,26 @@ class ChatController extends Controller {
 		fclose($f);
 	}
 
-	function check_write($login){
+	function check_write($login = ''){
 		global $config_chat;
+		if($login != ''){
+			if ($handle = opendir($config_chat['chats_folder'].'is_write/')) {
 
-		if ($handle = opendir($config_chat['chats_folder'].'is_write/')) {
+				$check = false;
+			    while (false !== ($entry = readdir($handle))) {
 
-			$check = false;
-		    while (false !== ($entry = readdir($handle))) {
+			        if($entry != $login.'.txt'){
+			        	$filename = $config_chat['chats_folder'].'is_write/'.$entry;
+			        	$val = file_get_contents($filename);
+			        	if($val == '1' && $check == false){
+			        		echo $val;
+			        		$check = true;
+			        	}
+			        }
+			    }
 
-		        if($entry != $login.'.txt'){
-		        	$filename = $config_chat['chats_folder'].'is_write/'.$entry;
-		        	$val = file_get_contents($filename);
-		        	if($val == '1' && $check == false){
-		        		echo $val;
-		        		$check = true;
-		        	}
-		        }
-		    }
-
-		    closedir($handle);
+			    closedir($handle);
+			}
 		}
 	}
 

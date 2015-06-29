@@ -26,7 +26,7 @@ $(document).ready(function(){
 
 			if(data[0] > curr_time){
 				chatUpdate();
-				curr_time = data;
+				curr_time = data[0];
 			}
 
 		} );

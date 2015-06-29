@@ -59,14 +59,14 @@ class ChatController extends Controller {
 
 			$username = $_POST['username'];
 			$time = time();
-
+			$m_time = round(microtime(true) * 1000);
 			$file_time = $config_chat['chats_folder'].'get_time/'.$id.'_time.txt';
 
 			$f = fopen( $file_time, "a" );
 
 			ftruncate($f, 0);
 
-			fwrite($f, $time);
+			fwrite($f, $m_time);
 
 			fclose($f);
 

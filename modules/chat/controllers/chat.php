@@ -119,37 +119,42 @@ class ChatController extends Controller {
 		$_SESSION['curr_login'] = $new_login;
 	}
 
-	function is_write($login, $val, $id){
+	function is_write($login = '', $val = '', $id = ''){
 		global $config_chat;
-
+		if($login != '' && $val != '' && $id != ''){
 		$dir = $config_chat['chats_folder'].'is_write/'.$id;
-		if(!is_dir($dir))
-			mkdir($dir);
-		$filename = $dir.'/'.$login.'.txt';
-		$f = fopen( $filename, "a" );
+			if(!is_dir($dir))
+				mkdir($dir);
+			$filename = $dir.'/'.$login.'.txt';
+			$f = fopen( $filename, "a" );
 
-		ftruncate($f, 0);
+			ftruncate($f, 0);
 
-		fwrite($f, $val);
+			fwrite($f, $val);
 
-		fclose($f);
+			fclose($f);
+		} else {
+			echo 'ERROR';
+		}
 	}
 
-	function check_write($login = ''){
+	function check_write($login = '', $id = ''){
 		global $config_chat;
-		if($login != ''){
-			if ($handle = opendir($config_chat['chats_folder'].'is_write/')) {
+		if($login != '' && $id != ''){
+			if ($handle = opendir($config_chat['chats_folder'].'is_write/'.$id)) {
 
 				$check = false;
 			    while (false !== ($entry = readdir($handle))) {
-
-			        if($entry != $login.'.txt'){
-			        	$filename = $config_chat['chats_folder'].'is_write/'.$entry;
-			        	$val = file_get_contents($filename);
-			        	if($val == '1' && $check == false){
-			        		echo $val;
-			        		$check = true;
-			        	}
+			        if($entry != $login.'.txt' && isset($entry) && $entry != '.' &&  $entry != '..'){
+			        	$filename = $config_chat['chats_folder'].'is_write/'.$id.'/'.$entry;
+			        	//echo $entry;
+			        	//if(file_exists($filename)){
+				        	$val = file_get_contents($filename);
+				        	if($val == '1' && $check == false){
+				        		echo $val;
+				        		$check = true;
+				        	}
+			        	//}
 			        }
 			    }
 

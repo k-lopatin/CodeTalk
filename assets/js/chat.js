@@ -15,7 +15,7 @@ $(document).ready(function(){
 	   			wr_val = 0;
 			else
 				wr_val = 1;		
-			console.log(data[0]);
+			//console.log(data[0]);
 			$.post("/chat_api/write/"+curr_id[4], 
    				{ 
    					id: curr_id[4],
@@ -33,8 +33,9 @@ $(document).ready(function(){
 
 
 
-		$.get( "/chat_api/check_write?curr_login="+$( "#username" ).val(), function(data){
+		$.get( "/chat_api/check_write?curr_login="+$( "#username" ).val()+"&id="+curr_id[4], function(data){
 			//$('.is_write').empty();
+			console.log(data);
 			if(data == 1){
 				$('.is_write img').show();
 				$( ".is_write img" ).animate({

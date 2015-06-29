@@ -30,7 +30,7 @@ function get($q){
 		case 'check_write':{
 			require_once('controllers/chat.php');
 			$curController = new ChatController();
-			$curController->check_write($_GET['curr_login']);
+			$curController->check_write($_GET['curr_login'],$_GET['id']);
 			break;
 		}
 		case 'get_time':{

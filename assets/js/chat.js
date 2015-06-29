@@ -1,16 +1,22 @@
+var curr_time = 0;
 $(document).ready(function(){
-
+	$(window).unload(function(){
+      console.log("Событие unload было вызвано!");
+   });
 	//update chat
 	chatUpdateInt = setInterval( function(){
 		var curr_id = window.location.href;
 		curr_id = curr_id.split('/');
-		$.get( "/chat_api/get?curr_id="+curr_id[4], function(msg_view){
-			$('#chat_box').html( msg_view );
-			
-			chat_box = document.getElementById('chat_box');
-			chat_box.scrollTop = chat_box.scrollHeight;
+		$.get( "/chat_api/get_time?curr_id="+curr_id[4], function(data){
+			console.log(data);
+			if(data > curr_time){
+				chatUpdate();
+				curr_time = data;
+			}
 
 		} );
+
+
 		var wr_val;
 		if($('#new_msg').val()=='')
    			wr_val = 0;
@@ -44,9 +50,7 @@ $(document).ready(function(){
 
 		} );
 
-	}, 250 );
-
-
+	}, 100 );
 
 	$('#new_msg').bind("enterKey", function(e){
 		msg = $('#new_msg').val();
@@ -86,3 +90,20 @@ $(document).ready(function(){
 	});
 
 })
+window.onload = function () {
+	chatUpdate();
+	//setTimeout(chatUpdate(), 1000);
+}
+
+var chatUpdate = function(){
+	//console.log("D");
+		var curr_id = window.location.href;
+		curr_id = curr_id.split('/');
+		$.get( "/chat_api/get?curr_id="+curr_id[4], function(msg_view){
+			$('#chat_box').html( msg_view );
+			
+			chat_box = document.getElementById('chat_box');
+			chat_box.scrollTop = chat_box.scrollHeight;
+
+		} );
+}

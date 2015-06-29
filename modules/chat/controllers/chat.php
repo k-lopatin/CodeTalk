@@ -52,12 +52,23 @@ class ChatController extends Controller {
 	}
 
 	function addMessage( $id = '' ){
+		global $config_chat;
 
 		if($id != ''){
 			$this->chatId = $id;
 
 			$username = $_POST['username'];
 			$time = time();
+
+			$file_time = $config_chat['chats_folder'].'get_time/'.$id.'_time.txt';
+
+			$f = fopen( $file_time, "a" );
+
+			ftruncate($f, 0);
+
+			fwrite($f, $time);
+
+			fclose($f);
 
 			$msg = $_POST['message'];
 
@@ -125,16 +136,35 @@ class ChatController extends Controller {
 
 		if ($handle = opendir($config_chat['chats_folder'].'is_write/')) {
 
+			$check = false;
 		    while (false !== ($entry = readdir($handle))) {
 
 		        if($entry != $login.'.txt'){
 		        	$filename = $config_chat['chats_folder'].'is_write/'.$entry;
 		        	$val = file_get_contents($filename);
-		        	echo $val;
+		        	if($val == '1' && $check == false){
+		        		echo $val;
+		        		$check = true;
+		        	}
 		        }
 		    }
 
 		    closedir($handle);
+		}
+	}
+
+	function get_time( $id = '' ){
+		global $config_chat;
+		if($id != ''){
+			$filename = $config_chat['chats_folder'].'get_time/'.$id.'_time.txt';
+			if(isset($filename)){
+				$val = file_get_contents($filename);
+				echo $val;
+			} else {
+				echo '0';
+			}
+		} else {
+			echo 'error';
 		}
 	}
 }

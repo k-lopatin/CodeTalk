@@ -33,5 +33,11 @@ function get($q){
 			$curController->check_write($_GET['curr_login']);
 			break;
 		}
+		case 'get_time':{
+			require_once('controllers/chat.php');
+			$curController = new ChatController();
+			$curController->get_time($_GET['curr_id']);
+			break;
+		}
 	}
 }

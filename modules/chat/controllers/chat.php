@@ -157,9 +157,11 @@ class ChatController extends Controller {
 		global $config_chat;
 		if($id != ''){
 			$filename = $config_chat['chats_folder'].'get_time/'.$id.'_time.txt';
-			if(isset($filename)){
-				$val = file_get_contents($filename);
-				echo $val;
+			if(file_exists($filename)){
+				$val = array();
+				$val[0] = file_get_contents($filename);
+				$val[1] = $_SESSION['curr_login'];
+				echo json_encode($val);
 			} else {
 				echo '0';
 			}

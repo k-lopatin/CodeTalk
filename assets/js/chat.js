@@ -8,8 +8,20 @@ $(document).ready(function(){
 		var curr_id = window.location.href;
 		curr_id = curr_id.split('/');
 		$.get( "/chat_api/get_time?curr_id="+curr_id[4], function(data){
-			console.log(data);
-			if(data > curr_time){
+			data = JSON.parse(data);
+
+			var wr_val;
+			if($('#new_msg').val()=='')
+	   			wr_val = 0;
+			else
+				wr_val = 1;		
+			console.log(data[0]);
+			$.post("/chat_api/write/"+curr_id[4], 
+   				{ login: data[1],
+   				  value: wr_val } );
+
+
+			if(data[0] > curr_time){
 				chatUpdate();
 				curr_time = data;
 			}
@@ -17,14 +29,6 @@ $(document).ready(function(){
 		} );
 
 
-		var wr_val;
-		if($('#new_msg').val()=='')
-   			wr_val = 0;
-		else
-			wr_val = 1;
-		$.post("/chat_api/write/"+curr_id[4], 
-   				{ login: $( "#username" ).val(),
-   				  value: wr_val } );
 
 		$.get( "/chat_api/check_write?curr_login="+$( "#username" ).val(), function(data){
 			//$('.is_write').empty();

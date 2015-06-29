@@ -17,8 +17,11 @@ $(document).ready(function(){
 				wr_val = 1;		
 			console.log(data[0]);
 			$.post("/chat_api/write/"+curr_id[4], 
-   				{ login: data[1],
-   				  value: wr_val } );
+   				{ 
+   					id: curr_id[4],
+   					login: data[1],
+   				  	value: wr_val 
+   				} );
 
 
 			if(data[0] > curr_time){

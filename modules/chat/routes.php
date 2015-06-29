@@ -24,7 +24,7 @@ function get($q){
 		case 'write':{
 			require_once('controllers/chat.php');
 			$curController = new ChatController();
-			$curController->is_write($_POST['login'], $_POST['value']);	
+			$curController->is_write($_POST['login'], $_POST['value'], $_POST['id']);	
 			break;
 		}
 		case 'check_write':{

@@ -22,10 +22,18 @@
 	</head>
 	<body>
 
+		<div id="top_panel">
+			<ul>
+				<li>Проект: <?php echo $v['project_id']; ?></li>
+				<li><a href="/">Другие проекты</a></li>
+				<li><a href="/">Пригласить человека</a></li>
+			</ul>			
+		</div>
+
 		<div id="container">
 
 			<div id="board">
-				<?php $this->showView('boardViews/board', $this->vars); ?>
+				<?php $this->showView('boardViews/board', $this->vars); ?>			
 			</div>
 			<div id="chat">
 				<div id="chat_box">

@@ -1,5 +1,8 @@
 <?php
 
+if(!isset($_SESSION)){
+   	session_start();
+}
 class ChatController extends Controller {
 	
 	private $chatId;
@@ -49,12 +52,23 @@ class ChatController extends Controller {
 	}
 
 	function addMessage( $id = '' ){
+		global $config_chat;
 
 		if($id != ''){
 			$this->chatId = $id;
 
 			$username = $_POST['username'];
 			$time = time();
+			$m_time = round(microtime(true) * 1000);
+			$file_time = $config_chat['chats_folder'].'get_time/'.$id.'_time.txt';
+
+			$f = fopen( $file_time, "a" );
+
+			ftruncate($f, 0);
+
+			fwrite($f, $m_time);
+
+			fclose($f);
 
 			$msg = $_POST['message'];
 
@@ -99,6 +113,71 @@ class ChatController extends Controller {
 
 	function closeChatFile( $file ){
 		fclose($file);
+	}
+
+	function updateLogin( $new_login ){
+		$_SESSION['curr_login'] = $new_login;
+	}
+
+	function is_write($login = '', $val = '', $id = ''){
+		global $config_chat;
+		if($login != '' && $val != '' && $id != ''){
+		$dir = $config_chat['chats_folder'].'is_write/'.$id;
+			if(!is_dir($dir))
+				mkdir($dir);
+			$filename = $dir.'/'.$login.'.txt';
+			$f = fopen( $filename, "a" );
+
+			ftruncate($f, 0);
+
+			fwrite($f, $val);
+
+			fclose($f);
+		} else {
+			echo 'ERROR';
+		}
+	}
+
+	function check_write($login = '', $id = ''){
+		global $config_chat;
+		if($login != '' && $id != ''){
+			if ($handle = opendir($config_chat['chats_folder'].'is_write/'.$id)) {
+
+				$check = false;
+			    while (false !== ($entry = readdir($handle))) {
+			        if($entry != $login.'.txt' && isset($entry) && $entry != '.' &&  $entry != '..'){
+			        	$filename = $config_chat['chats_folder'].'is_write/'.$id.'/'.$entry;
+			        	//echo $entry;
+			        	//if(file_exists($filename)){
+				        	$val = file_get_contents($filename);
+				        	if($val == '1' && $check == false){
+				        		echo $val;
+				        		$check = true;
+				        	}
+			        	//}
+			        }
+			    }
+
+			    closedir($handle);
+			}
+		}
+	}
+
+	function get_time( $id = '' ){
+		global $config_chat;
+		if($id != ''){
+			$filename = $config_chat['chats_folder'].'get_time/'.$id.'_time.txt';
+			if(file_exists($filename)){
+				$val = array();
+				$val[0] = file_get_contents($filename);
+				$val[1] = $_SESSION['curr_login'];
+				echo json_encode($val);
+			} else {
+				echo '0';
+			}
+		} else {
+			echo 'error';
+		}
 	}
 }
 

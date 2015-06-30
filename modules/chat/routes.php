@@ -15,5 +15,29 @@ function get($q){
 			$curController->addMessage($q[2]);
 			break;
 		}
+		case 'update_login': {
+			require_once('controllers/chat.php');
+			$curController = new ChatController();
+			$curController->updateLogin($_POST['new_login']);			
+			break;
+		}
+		case 'write':{
+			require_once('controllers/chat.php');
+			$curController = new ChatController();
+			$curController->is_write($_POST['login'], $_POST['value'], $_POST['id']);	
+			break;
+		}
+		case 'check_write':{
+			require_once('controllers/chat.php');
+			$curController = new ChatController();
+			$curController->check_write($_GET['curr_login'],$_GET['id']);
+			break;
+		}
+		case 'get_time':{
+			require_once('controllers/chat.php');
+			$curController = new ChatController();
+			$curController->get_time($_GET['curr_id']);
+			break;
+		}
 	}
 }

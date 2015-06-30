@@ -45,4 +45,14 @@
 	font-size: 17px;
 }
 
+.is_write {
+	margin: -5px auto 5px auto;
+  	width: 900px;
+  	height: 15px;
+}
+.is_write img {
+	width: 10px;
+	height: 10px;
+	display: none;
+}
 /*---------------- END OF CHAT ----------------------*/

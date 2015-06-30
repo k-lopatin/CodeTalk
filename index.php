@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 require_once 'framework/autoload.php';
 if( isset($_GET['q']) ){
 	$q = explode('/', $_GET['q']);
@@ -27,7 +28,9 @@ switch( $q[0] ){
 	}
 }
 
-session_start();
+if(!isset($_SESSION)){
+   	session_start();
+}
 if(isset($curController)){
 	if( isset( $q[1] ) ){
 		$curController->index($q[1]);

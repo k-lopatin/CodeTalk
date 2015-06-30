@@ -4,13 +4,34 @@
 }
 
 
+#container {
+	width: 1400px;
+	margin: 50px auto;
+}
+
+/*----------------- BOARD ---------------------*/
+#board {
+	width: 700px;
+	height: 80%;
+	float: left;
+	margin: 0 15px 0 0; 
+	background: #fffff4;
+}
+
 /*---------------- CHAT ----------------------*/
+
+#chat {
+	width: 600px;
+	float: left;
+}
 
 #chat_box {
 	overflow-y: scroll;
 	height: 70%;
-	width: 1000px;
+	width: 600px;
 	margin: 10px auto;
+	border: 1px #f0ffff solid;	
+	background: #f5ffff;
 }
 
 #chat_box .date {
@@ -32,13 +53,13 @@
 }
 
 #add_msg {
-	width: 1000px;
+	width: 590px;
 	margin: 10px auto;
 }
 #new_msg {
 	display: block;
 	height: 80px;
-	width: 1000px;
+	width: 590px;
 	margin: 10px auto;
 
 	padding: 5px;
@@ -47,7 +68,7 @@
 
 .is_write {
 	margin: -5px auto 5px auto;
-  	width: 900px;
+  	width: 595px;
   	height: 15px;
 }
 .is_write img {

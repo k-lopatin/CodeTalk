@@ -26,6 +26,11 @@ switch( $q[0] ){
 		get($q);
 		break;
 	}
+	case 'board_api': {
+		require_once('modules/board/routes.php');
+		get($q);
+		break;
+	}
 }
 
 if(!isset($_SESSION)){

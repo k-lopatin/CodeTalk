@@ -1,6 +1,6 @@
 <?php
 require_once('Model.php');
-class GuestModel extends Model {
+class NoteModel extends Model {
 
 	function getAllNotes(){
 		$notes = array();

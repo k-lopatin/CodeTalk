@@ -4,13 +4,23 @@ class RegisterController extends Controller {
 
 	function index( $f = '' ){
 		$this->vars = array();
+		$this->vars['name'] = '';
+		$this->vars['login'] = '';
+		$this->vars['email'] = '';
 		if( $_SERVER["REQUEST_METHOD"]=="POST" ){
-			
+
 			$this->vars['name'] = $_POST['name'];
 			$this->vars['login'] = $_POST['login'];
 			$this->vars['email'] = $_POST['email'];
 
-			if( !empty($_POST['name']) && !empty($_POST['login']) && !empty($_POST['password']) && !empty(!empty($_POST['email'])) ){
+			if( !empty($_POST['name']) && !empty($_POST['login']) && !empty($_POST['password']) && !empty(!empty($_POST['email'])) 
+				&& strlen($_POST['password']) > 5){
+
+                $link = mysqli_connect("localhost", "root", "root", "codetalk");
+                if (!$link){
+                    echo 'CONNECTION ERROR';
+                }
+
 				$this->showView('registerAfter', $this->vars);	
 			} else {
 				$this->showView('register', $this->vars);

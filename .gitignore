@@ -6,3 +6,4 @@
 .DS_STORE
 /file_db/
 composer.lock
+/.idea

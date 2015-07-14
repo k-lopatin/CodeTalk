@@ -3,14 +3,64 @@
 	padding: 0;
 }
 
+body {
+	min-width: 1400px;
+}
+
+#top_panel {
+	width: 100%;
+	height: 30px;
+	margin: 0;
+	padding: 8px 0 0 0;
+	color: #fff;
+	background: #000;
+}
+
+#top_panel ul {
+	width: 1400px;
+	margin: 0 auto;
+}
+#top_panel ul li {
+	display: inline-block;
+	margin: 0 8px;
+}
+#top_panel ul li a {
+	color: #fff;
+}
+#top_panel ul li a:hover {
+	text-decoration: none;
+}
+
+#container {
+	width: 1400px;
+	height: 800px;
+	margin: 50px auto;
+}
+
+/*----------------- BOARD ---------------------*/
+#board {
+	width: 700px;
+	height: 100%;
+	float: left;
+	margin: 0 15px 0 0; 
+	background: #fffff4;
+}
 
 /*---------------- CHAT ----------------------*/
 
+#chat {
+	width: 600px;
+	height: 90%;
+	float: left;
+}
+
 #chat_box {
 	overflow-y: scroll;
-	height: 70%;
-	width: 1000px;
+	height: 90%;
+	width: 600px;
 	margin: 10px auto;
+	border: 1px #f0ffff solid;	
+	background: #f5ffff;
 }
 
 #chat_box .date {
@@ -32,13 +82,13 @@
 }
 
 #add_msg {
-	width: 1000px;
+	width: 590px;
 	margin: 10px auto;
 }
 #new_msg {
 	display: block;
 	height: 80px;
-	width: 1000px;
+	width: 590px;
 	margin: 10px auto;
 
 	padding: 5px;
@@ -47,7 +97,7 @@
 
 .is_write {
 	margin: -5px auto 5px auto;
-  	width: 900px;
+  	width: 595px;
   	height: 15px;
 }
 .is_write img {

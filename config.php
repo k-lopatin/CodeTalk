@@ -2,7 +2,7 @@
 
 $config_db = array(
 		'server' => 'localhost',
-		'db' => 'bl_wp',
+		'db' => 'codetalk',
 		'user' => 'root',
 		'password' => 'root'
 	);

@@ -4,6 +4,7 @@ abstract class Controller {
 	protected $vars;
 
 	function showView($name, $vars){
+		$v = $vars;
 		require_once( 'views/'.$name.'View.php');
 	}
 

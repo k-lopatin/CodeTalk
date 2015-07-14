@@ -4,4 +4,6 @@
 /templates/cache/*
 !/templates/cache/README.md
 .DS_STORE
+/file_db/
 composer.lock
+/.idea

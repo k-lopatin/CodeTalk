@@ -15,6 +15,7 @@
 	<body>
 	<?php
 		echo '<a href="/project/'.$this->vars[0].'">НАЧАТЬ ЧАТ</a>';
+		echo '<a href="/registration"> Регистрация </a>';
 	?>
 	</body>
 </html>

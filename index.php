@@ -7,7 +7,7 @@ if( isset($_GET['q']) ){
 	$q[0] = '';
 }
 //echo "tesdt";
-//current controller that displays page
+//current co
 $curController; 
 
 switch( $q[0] ){
@@ -29,6 +29,11 @@ switch( $q[0] ){
 	case 'board_api': {
 		require_once('modules/board/routes.php');
 		get($q);
+		break;
+	}
+	case 'registration': {		
+		require_once('controllers/registration.php');
+		$curController = new RegisterController();
 		break;
 	}
 }

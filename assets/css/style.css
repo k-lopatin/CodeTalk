@@ -37,13 +37,35 @@ body {
 	margin: 50px auto;
 }
 
+/*----------------- CHAT VIEW -----------------*/
+#chat_view {
+	background: #0079BF;
+}
+
 /*----------------- BOARD ---------------------*/
 #board {
 	width: 700px;
 	height: 100%;
 	float: left;
-	margin: 0 15px 0 0; 
-	background: #fffff4;
+	margin: 0 15px 0 0;
+}
+#add_to_board_block textarea {
+	width: 200px;
+	height: 60px;
+	padding: 8px;
+}
+#add_note_link {
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+	vertical-align: top;
+}
+#notes_block .simple_note {
+	display: inline-block;
+	padding: 10px;
+	background: #fff;
+	margin: 10px;
+	max-width: 200px;
 }
 
 /*---------------- CHAT ----------------------*/
@@ -59,8 +81,8 @@ body {
 	height: 90%;
 	width: 600px;
 	margin: 10px auto;
-	border: 1px #f0ffff solid;	
-	background: #f5ffff;
+	border: 1px #fff solid;
+	background: #fff;
 }
 
 #chat_box .date {

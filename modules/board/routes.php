@@ -5,7 +5,13 @@ function get($q){
 		case 'add_note': {
 			require_once('controllers/board.php');
 			$curController = new BoardController();
-			$curController->addMessage($q[2]);
+			$curController->addNote($q[2]);
+			break;
+		}
+		case 'get_notes': {
+			require_once('controllers/board.php');
+			$curController = new BoardController();
+			$curController->getNotes($q[2]);
 			break;
 		}
 	}

@@ -1,30 +1,54 @@
-$(document).ready(function() {
+$(document).ready(function () {
+
+    //getting id of the current chat
+    var curr_id = window.location.href;
+    curr_id = curr_id.split('/');
 
 
-	$('#note_text').bind("enterKey", function (e) {
-		msg = $('#new_msg').val();
-		$('#new_msg').val('');
+    /**
+     * updates all board
+     */
+    function updateBoard() {
 
-		name = $('#username').val();
+        /**
+         * Getting notes to the board
+         */
+        $.post("/board_api/get_notes/" + curr_id[4],
+            {}).done(function (data) {
+                $('#notes_block').html(data);
+            });
+    }
 
-		var curr_id = window.location.href;
-		curr_id = curr_id.split('/');
-
-		if (msg != '') {
-			$.post("/board_api/add/" + curr_id[4],
-				{
-					username: name,
-					message: msg
-				});
-		}
-
-	});
+    updateBoard();
+    updateBoardInterval = setInterval(function(){
+        updateBoard();
+    }, 5000);
 
 
-	$('#note_text').keyup(function (e) {
-		if (e.keyCode == 13) {
-			$(this).trigger("enterKey");
-		}
-	});
 
-}
+
+    /**
+     * Adds new note to the board
+     */
+    $('#add_note_link').click(function (e) {
+
+        text = $('#note_text').val();
+        $('#note_text').val('');
+
+        name = $('#username').val();
+
+
+        if (text != '') {
+            $.post("/board_api/add_note/" + curr_id[4],
+                {
+                    username: name,
+                    text: text
+                }).done(function (data) {
+                    updateBoard();
+                });
+        }
+
+    });
+
+
+});

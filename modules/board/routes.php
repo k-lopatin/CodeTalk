@@ -8,6 +8,12 @@ function get($q){
 			$curController->addNote($q[2]);
 			break;
 		}
+        case 'edit_note': {
+            require_once('controllers/board.php');
+            $curController = new BoardController();
+            $curController->editNote($q[2]);
+            break;
+        }
 		case 'get_notes': {
 			require_once('controllers/board.php');
 			$curController = new BoardController();

@@ -20,10 +20,25 @@ class BoardController extends Controller
     public function addNote($chatId)
     {
         if (isset($_POST['text']) && $_POST['text'] != '') {
-            echo 'test';
             $text = $_POST['text'];
             $notesModel = new NotesModel();
             $notesModel->addNote($chatId, $text);
+        }
+
+
+    }
+
+    /**
+     * edit note at the board with id and chatId
+     * @param $chatId string identificator of the chat
+     */
+    public function editNote($chatId)
+    {
+        if (isset($_POST['text']) && $_POST['text'] != '') {
+            $noteId = $_POST['id'];
+            $text = $_POST['text'];
+            $notesModel = new NotesModel();
+            $notesModel->editNote($chatId, $noteId, $text);
         }
 
 

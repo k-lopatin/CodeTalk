@@ -1,4 +1,7 @@
 <?php
 foreach($v['notes'] as $note){
-    echo '<div class="simple_note">'.$note['text'].'</div>';
+    ?>
+    <div class="simple_note" rel="<?=$note['id']?>"><?=$note['text']?></div>
+
+<?php
 }

@@ -65,7 +65,14 @@ body {
 	padding: 10px;
 	background: #fff;
 	margin: 10px;
-	max-width: 200px;
+	max-width: 220px;
+}
+#notes_block .simple_note .edit_note {
+	display: inline-block;
+	padding: 6px;
+	width: 200px;
+	height: 60px;
+	margin: 0 15px 0 0;
 }
 
 /*---------------- CHAT ----------------------*/

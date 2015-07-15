@@ -53,9 +53,16 @@ $(document).ready(function () {
      * Shows textarea fir editing
      */
     $('body').on('dblclick', '.simple_note', function () {
+
+        //Check if note is already editing
+        var isEdited = $(this).attr('data-edited');
+        if (isEdited == 1) return;
+
+        $(this).attr('data-edited', 1);
         var curText = $(this).html();
         var editHtml = '<textarea class="edit_note">' + curText + '</textarea>';
-        editHtml += '<a class="note_save_btn">Сохранить</a>'
+        editHtml += '<a class="note_save_btn">Сохранить</a>';
+        editHtml += '<a class="note_del_btn">Удалить</a>';
         $(this).html(editHtml);
         clearInterval(updateBoardInterval);
     });
@@ -76,8 +83,28 @@ $(document).ready(function () {
                     text: newNoteText
                 }).done(function (data) {
                     updateBoard();
+
                 });
         }
+    });
+
+    /**
+     * Remove edited note
+     */
+    $('body').on('click', '.note_del_btn', function () {
+
+        var curNoteDiv = $(this).parent('.simple_note');
+        var noteId = curNoteDiv.attr('rel');
+
+        $.post("/board_api/del_note/" + curr_id[4],
+            {
+                id: noteId
+            }).done(function (data) {
+                curNoteDiv.fadeOut(400, function () {
+                    updateBoard();
+                });
+            });
+
     });
 
 

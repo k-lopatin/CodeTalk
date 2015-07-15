@@ -74,6 +74,16 @@ body {
 	height: 60px;
 	margin: 0 15px 0 0;
 }
+#notes_block .simple_note .note_save_btn {
+	color: green;
+	cursor: pointer;
+}
+#notes_block .simple_note .note_del_btn {
+	color: red;
+	cursor: pointer;
+    float: right;
+    margin: 0 5px 0 0;
+}
 
 /*---------------- CHAT ----------------------*/
 

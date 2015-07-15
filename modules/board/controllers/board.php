@@ -45,6 +45,19 @@ class BoardController extends Controller
     }
 
     /**
+     * revoves note from the board with id and chatId
+     * @param $chatId string identificator of the chat
+     */
+    public function delNote($chatId)
+    {
+
+        $noteId = $_POST['id'];
+        $notesModel = new NotesModel();
+        $notesModel->delNote($chatId, $noteId);
+
+    }
+
+    /**
      * Gets all notes from chat with chatId
      * @param $chatId string identificator of the chat
      */

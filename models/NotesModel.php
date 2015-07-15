@@ -45,8 +45,9 @@ class NotesModel extends Model
         echo mysqli_error($this->mysqli);
     }
 
-    /*function delNoteById($id){
-        $this->mysqli->query( 'DELETE FROM guest_book WHERE id = '.$id );
+    function delNote($chatId, $id){
+        $this->mysqli->query( 'DELETE FROM notes
+                              WHERE chat_id = "' . $chatId . '" AND id=' . $id );
         echo mysqli_error($this->mysqli);
-    }*/
+    }
 }

@@ -10,7 +10,6 @@
 		<script src="/assets/js/chat.js"></script>
 		<script src="/assets/js/board.js"></script>
 
-
 		<link rel="stylesheet" href="/assets/css/style.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</head>

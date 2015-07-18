@@ -1,4 +1,5 @@
 var curr_time = 0;
+var curr_search_val = "";
 $(document).ready(function(){
 	$(window).unload(function(){
       console.log("Событие unload было вызвано!");
@@ -24,7 +25,7 @@ $(document).ready(function(){
    				} );
 
 
-			if(data[0] > curr_time){
+			if(data[0] > curr_time && $( "#search" ).val() == ""){
 				chatUpdate();
 				curr_time = data[0];
 			}
@@ -57,6 +58,29 @@ $(document).ready(function(){
 			}
 
 		} );
+
+		var new_search_val = $( "#search" ).val();
+		console.log("new = "+new_search_val+"curr = " + curr_search_val);
+		if(new_search_val == "" && curr_search_val != ""){
+			chatUpdate();
+		}
+		if(new_search_val == ""){
+			curr_search_val = new_search_val;			
+		}
+		if( new_search_val != curr_search_val && new_search_val != "") {
+			curr_search_val = new_search_val;
+			$.get( "/chat_api/search?curr_id="+curr_id[4]+"&val="+curr_search_val, function(data){
+				if(data == ""){
+					$('#chat_box').html('<div id = "not_found">По вашему запросу ничего не найдено</div>');
+				} else {
+					$('#chat_box').html( data );
+				
+					chat_box = document.getElementById('chat_box');
+					chat_box.scrollTop = chat_box.scrollHeight;
+				}
+
+			} );
+		}
 
 	}, 100 );
 
@@ -99,7 +123,9 @@ $(document).ready(function(){
 
 })
 window.onload = function () {
-	chatUpdate();
+	if( $( "#search" ).val() == "" ){
+		chatUpdate();
+	}
 	//setTimeout(chatUpdate(), 1000);
 }
 

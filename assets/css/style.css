@@ -39,7 +39,7 @@ body {
 
 /*----------------- CHAT VIEW -----------------*/
 #chat_view {
-	background: #0079BF;
+	background: #B8D6F6;
 }
 
 /*----------------- BOARD ---------------------*/
@@ -105,7 +105,7 @@ body {
 
 #add_msg {
 	width: 590px;
-	margin: 10px auto;
+	margin: 10px 0;
 }
 #new_msg {
 	display: block;
@@ -126,5 +126,24 @@ body {
 	width: 10px;
 	height: 10px;
 	display: none;
+}
+
+#search {
+	background: url(/assets/images/loupe.png) no-repeat #fff;
+	background-size: 16px 16px;
+	background-position: 2px;
+	padding: 5px 20px;	
+}
+
+.base_input{
+	height: 15px;
+	border: none;
+	padding: 5px;	
+}
+
+#not_found {
+	text-align: center;
+  	color: #777;
+  	margin-top: 50%;
 }
 /*---------------- END OF CHAT ----------------------*/

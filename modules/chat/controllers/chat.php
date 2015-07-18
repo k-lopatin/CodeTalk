@@ -46,7 +46,7 @@ class ChatController extends Controller {
 	private function parseMsg( $msg ){
 		$msgArr = explode( ' ', $msg, 3 );
 
-		$msgArr[0] = date('H:i:s', $msgArr[0]);
+		$msgArr[0] = date('H:i:s', strtotime($msgArr[0]));
 
 		return $msgArr;
 	}
@@ -176,6 +176,35 @@ class ChatController extends Controller {
 				echo '0';
 			}
 		} else {
+			echo 'error';
+		}
+	}
+
+	function search($id = '', $val = ''){
+		if($id != '' ){
+			if($val != ''){
+				$this->chatId = $id;
+
+				$chatArr = $this->openChatFileArray();
+				$prevMsgArr = array('', '', '');
+				if($chatArr != -1){
+					foreach( $chatArr as $msg ){
+
+						$msgArr = $this->parseMsg( $msg );
+						$pos = strpos($msgArr[2], $val);
+						
+
+						if($pos !== false){
+							$this->msgView( $msgArr, $prevMsgArr );
+
+							$prevMsgArr = $msgArr;						
+						}
+
+					}
+				}
+			}
+		} else {
+			// @todo normal error system
 			echo 'error';
 		}
 	}

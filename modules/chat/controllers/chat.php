@@ -30,23 +30,24 @@ class ChatController extends Controller {
 
 	} 
 
-	private function msgView( $msgArr, $prevMsgArr ){
+	private function msgView( $msgArr = '', $prevMsgArr ){
+		if($msgArr != ''){
+			echo '<span class="date">' . $msgArr[0] . '</span> ';
 
-		echo '<span class="date">' . $msgArr[0] . '</span> ';
+			if( $msgArr[1] != $prevMsgArr[1] ){
+				echo '<span class="name">' . $msgArr[1] . '</span> ';
+			}		
+			echo '<span class="message">' . $msgArr[2] . '</span> ';
 
-		if( $msgArr[1] != $prevMsgArr[1] ){
-			echo '<span class="name">' . $msgArr[1] . '</span> ';
-		}		
-		echo '<span class="message">' . $msgArr[2] . '</span> ';
-
-		echo '<div class="clear"></div>';
+			echo '<div class="clear"></div>';
+		}
 
 	}
 
 	private function parseMsg( $msg ){
 		$msgArr = explode( ' ', $msg, 3 );
 
-		$msgArr[0] = date('H:i:s', strtotime($msgArr[0]));
+		$msgArr[0] = date('H:i:s', $msgArr[0]);
 
 		return $msgArr;
 	}

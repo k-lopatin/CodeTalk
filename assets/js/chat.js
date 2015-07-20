@@ -36,7 +36,6 @@ $(document).ready(function(){
 
 		$.get( "/chat_api/check_write?curr_login="+$( "#username" ).val()+"&id="+curr_id[4], function(data){
 			//$('.is_write').empty();
-			console.log(data);
 			if(data == 1){
 				$('.is_write img').show();
 				$( ".is_write img" ).animate({
@@ -60,7 +59,6 @@ $(document).ready(function(){
 		} );
 
 		var new_search_val = $( "#search" ).val();
-		console.log("new = "+new_search_val+"curr = " + curr_search_val);
 		if(new_search_val == "" && curr_search_val != ""){
 			chatUpdate();
 		}
@@ -86,6 +84,7 @@ $(document).ready(function(){
 
 	$('#new_msg').bind("enterKey", function(e){
 		msg = $('#new_msg').val();
+
 		$('#new_msg').val('');
 
 		name = $('#username').val();
@@ -93,7 +92,7 @@ $(document).ready(function(){
 		var curr_id = window.location.href;
 		curr_id = curr_id.split('/');
 
-   		if( msg != '' ){
+   		if( msg != '\n' ){
    			$.post("/chat_api/add/"+curr_id[4], 
    				{ username: name,
    				  message: msg } );

@@ -185,3 +185,8 @@ $(window).load(function(){
 		ownerEmail:'#'
 	})
 })
+ $(document).ready(function(){
+       $("#link1").click(function(){
+             $("#register_from").submit();
+       })
+})

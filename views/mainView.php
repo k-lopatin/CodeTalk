@@ -4,7 +4,7 @@
 		<header class="page1">
 			<div class="container_12">
 				<div class="grid_12">
-					<h1><a href="#" onClick="goToByScroll('page1'); return false;"><img src="images/logo.png" alt="Gerald Harris attorney at law"></a></h1>
+					<h1><a href="#" onClick="goToByScroll('page1'); return false;"><img src="/assets/images/logo.png"></a></h1>
 					<div class="menu_block">
 						<nav class="">
 							<ul class="sf-menu">
@@ -21,7 +21,6 @@
 		</header>
 <!--=======content================================-->
 		<div id="page1" class="content">
-			<div class="ic">More Website Templates @ TemplateMonster.com - September 9, 2013!</div>
 			<div class="container_12">
 				<div class="grid_12">
 					<div class="slider_wrapper">
@@ -97,14 +96,14 @@
 						<h3>Присоединиться</h3>
 					</div>	
 					<div class="text2">
-						<a href="/registration">Зарегистрируйтесь</a> и создайте свой проект прямо сейчас!
+						<a href="/registration" class="underlined">Зарегистрируйтесь</a> и создайте свой проект прямо сейчас!
 					</div>
 					<div class="text2">
 						ИЛИ
 					</div>
 					<div class="text2">
 						<?php
-							echo '<a href="/project/'.$this->vars[0].'">Попробуйте систему</a>'; 
+							echo '<a class="underlined" href="/project/'.$this->vars[0].' ">Попробуйте систему</a>'; 
 						?> 
 						в качетсве гостя.
 					</div>			
@@ -116,7 +115,7 @@
 			<div class="container_12">
 				<div class="grid_12">
 					<div class="copy">
-						<a onClick="goToByScroll('page1'); return false;" href="#"><img src="images/footer_logo.png" alt=""></a>  &copy; 2013 | <a href="#">Privacy Policy</a> <br> Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
+						<a onClick="goToByScroll('page1'); return false;" href="#"><img src="/assets/images/logo.png" id="footer_logo"></a>  &copy; 2015 | CodeTalk
 					</div>
 				</div>
 				<div class="clear"></div>

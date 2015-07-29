@@ -7,6 +7,7 @@ class RegisterController extends Controller {
 		$this->vars['name'] = '';
 		$this->vars['login'] = '';
 		$this->vars['email'] = '';
+        $this->vars['msg'] = '';
 		if( $_SERVER["REQUEST_METHOD"]=="POST" ){
 
 			$this->vars['name'] = $_POST['name'];
@@ -65,12 +66,12 @@ class RegisterController extends Controller {
                                     echo 'Ошибка отправки данных';
                                 }
                             } else {
-                                $this->showView('register', $this->vars);
-                                echo 'Данный E-mail занят';                                  
+                                $this->vars['msg'] = 'Данный E-mail занят'; 
+                                $this->showView('register', $this->vars);                                 
                             }
                         } else {
-                            $this->showView('register', $this->vars);
-                            echo 'Данный логин занят';                            
+                            $this->vars['msg'] = 'Данный логин занят';
+                            $this->showView('register', $this->vars);                            
                         }
                     } else {
                         echo 'ERROR';
@@ -78,8 +79,8 @@ class RegisterController extends Controller {
                 }
 
 			} else {
+                $this->vars['msg'] = "Корректно заполните все поля";
 				$this->showView('register', $this->vars);
-				echo 'Корректно заполните все поля';
 			}		
 		} else {
 			$this->showView('register', $this->vars);	

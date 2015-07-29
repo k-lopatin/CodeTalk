@@ -154,7 +154,31 @@ body {
 
 .register_from{
 	margin: 10% auto;
-	width: 10%;
+	width: 216px;
+}
+
+.register_from .base_input{
+	border: 1px solid #3c7f9f!important;
+	margin: 2px 0;
+    height: 20px;
+}
+
+.register_from label {
+	font-weight: bold;
+}
+
+.form_bg{
+	background: #3f9fc9;
+	position: absolute;
+	height: 100%;	
+	width: 100%;
+}
+
+.err_msg {
+    font-weight: bold;
+    height: 19px;
+    margin: -8px 0;
+    text-align: center;
 }
 
 /*-------------- END OF REGISTRATION ----------------*/

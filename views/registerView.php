@@ -1,5 +1,5 @@
 <?php require_once('head.php');?>
-<div class="">
+<div class="register_from">
 	<form action="/registration" method="post" id="register_form">
 	<label>Имя:</label><br/>
 	<input class="input-text" name="name" type="text" size="25" value="<?=$v['name']?>"  id="reg_name"><br/>

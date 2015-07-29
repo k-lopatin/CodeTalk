@@ -50,14 +50,23 @@ class RegisterController extends Controller {
                         $query = "SELECT * FROM users WHERE login='$login'";
                         $res = mysqli_query($link, $query);
                         $row = mysqli_fetch_assoc($res);
+
+                        $query_email = "SELECT * FROM users WHERE email = '$email'";
+                        $res_email = mysqli_query($link, $query_email);
+                        $row_email = mysqli_fetch_assoc($res_email);
                         if(empty($row['login'])) {
-                            $query = "INSERT INTO users (name, login, email, password)
-                                VALUES ('$name', '$login', '$email', '$password')";
-                            if ($res = mysqli_query($link, $query)) {
-                                // echo 'OK';
-                                $this->showView('registerAfter', $this->vars);  
+                            if(empty($row_email['email'])){
+                                $query = "INSERT INTO users (name, login, email, password)
+                                    VALUES ('$name', '$login', '$email', '$password')";
+                                if ($res = mysqli_query($link, $query)) {
+                                    // echo 'OK';
+                                    $this->showView('registerAfter', $this->vars);  
+                                } else {
+                                    echo 'Ошибка отправки данных';
+                                }
                             } else {
-                                echo 'Ошибка отправки данных';
+                                $this->showView('register', $this->vars);
+                                echo 'Данный E-mail занят';                                  
                             }
                         } else {
                             $this->showView('register', $this->vars);

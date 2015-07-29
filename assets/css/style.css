@@ -66,6 +66,8 @@ body {
 	background: #fff;
 	margin: 10px;
 	max-width: 220px;
+    border-radius: 5px;
+    box-shadow: #000 1px 1px 6px;
 }
 #notes_block .simple_note .edit_note {
 	display: inline-block;

@@ -63,7 +63,15 @@ $(document).ready(function () {
         var editHtml = '<textarea class="edit_note">' + curText + '</textarea>';
         editHtml += '<a class="note_save_btn">Сохранить</a>';
         editHtml += '<a class="note_del_btn">Удалить</a>';
+        editHtml += '<input type="text" class="note_reminder_input" id="datetimepicker"/>';
+        editHtml += '<a class="note_set_reminder">Напомнить</a>';
+
+
         $(this).html(editHtml);
+
+        $('#datetimepicker').datetimepicker({
+            format: 'd.m.Y H:i'
+        });
         clearInterval(updateBoardInterval);
     });
     /**
@@ -106,6 +114,17 @@ $(document).ready(function () {
             });
 
     });
+
+    /**
+     * Set reminder for edited note
+     */
+    $('body').on('click', '.note_set_reminder', function () {
+
+        var curDateInput = $(this).siblings('.note_reminder_input');
+        alert(curDateInput.val());
+
+    });
+
 
 
 });

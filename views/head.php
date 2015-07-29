@@ -10,6 +10,10 @@
 		<script src="/assets/js/chat.js"></script>
 		<script src="/assets/js/board.js"></script>
 
+        <!-- DATE PICKER FOR REMINDERS -->
+        <link rel="stylesheet" type="text/css" href="/assets/js/datetimepicker/jquery.datetimepicker.css"/>
+        <script src="/assets/js/datetimepicker/jquery.datetimepicker.js"></script>
+
 		<link rel="stylesheet" href="/assets/css/style.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</head>

@@ -44,12 +44,14 @@
 								</div>
 							</li>
 					</div>
-					<div class="socials">
+						<div class="btns gray" onclick="goToByScroll('page2'); return false;"><a id="link1">Вход</a></div>
+						<div class="btns gray" onclick="goToByScroll('page2'); return false;"><a id="link1">Регистрация</a></div>
+					<!--<div class="socials">							
+						<a href="#">Вход</a>
 						<a href="#"></a>
 						<a href="#"></a>
 						<a href="#"></a>
-						<a href="#"></a>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</div>		
@@ -92,6 +94,7 @@
 		<div id="page2" class="content">
 			<div class="container_12">
 				<div class="grid_12">
+					
 					<div class="connect">
 						<h3>Присоединиться</h3>
 					</div>	

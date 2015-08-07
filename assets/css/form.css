@@ -77,12 +77,13 @@ padding-top: 6px;
 }
 
 .btns {
-	position:relative;
-	padding-top: 20px;
-	text-align: center;
+	position: relative;
+    padding-top: 20px;
+    text-align: center;
+    margin: 0 20px;
+    display: inline-block;
 
 }
-
 
 .btns a {
 	display: inline-block;
@@ -100,6 +101,24 @@ padding-top: 6px;
 	background-color: #c2e8f4;
 	border-color: #3c7f9f;
 	color: #39596e;
+}
+
+.btns.gray a {
+	display: inline-block;
+    font-size: 19px;
+    line-height: 18px;
+    border: 1px solid #fff;
+    min-width: 107px;
+    padding: 15px 10px;
+    color: #fff;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.btns.gray a:hover{
+	background-color: transparent;
+	border-color: #98A3AF;
+	color: #98A3AF;	
 }
 
 #form .message {

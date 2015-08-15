@@ -140,3 +140,43 @@ var chatUpdate = function(){
 
 		} );
 }
+
+var main_submit_f = function(id){
+	if(id == 'register'){
+		var msg = $('#register').serialize();
+		$.ajax({
+	          type: 'POST',
+	          url: 'registration',
+	          data: msg,
+	          success: function(data) {
+	          	data = JSON.parse(data);
+	          	$('.err_msg').empty();
+	          	$('.err_msg.one').append( data['msg'] );
+	          	if(data['is_reg'])
+	          		$('#register')[0].reset();
+	            console.log(data['is_reg']);
+	          },
+	          error:  function(xhr, str){
+	                console.log('Возникла ошибка: ' + xhr.responseCode);
+	            }
+	        });
+	} else {
+		var msg = $('#auth').serialize();
+		$.ajax({
+	          type: 'POST',
+	          url: 'auth',
+	          data: msg,
+	          success: function(data) {
+	          	data = JSON.parse(data);
+	          	$('.err_msg').empty();
+	          	$('.err_msg.two').append( data['msg'] );
+	          	if(data['auth'])
+	          		$('#auth')[0].reset();
+	            console.log(data['msg']);
+	          },
+	          error:  function(xhr, str){
+	                console.log('Возникла ошибка: ' + xhr.responseCode);
+	            }
+	        });
+	}
+}

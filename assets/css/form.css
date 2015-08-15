@@ -121,6 +121,10 @@ padding-top: 6px;
 	color: #98A3AF;	
 }
 
+.btns.center {
+	margin: 0 auto ;
+}
+
 #form .message {
 	width: 100%;
 }

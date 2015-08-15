@@ -44,8 +44,8 @@
 								</div>
 							</li>
 					</div>
-						<div class="btns gray" onclick="goToByScroll('page2'); return false;"><a id="link1">Вход</a></div>
 						<div class="btns gray" onclick="goToByScroll('page2'); return false;"><a id="link1">Регистрация</a></div>
+						<div class="btns gray" onclick="goToByScroll('page2'); return false;"><a id="link1">Вход</a></div>
 					<!--<div class="socials">							
 						<a href="#">Вход</a>
 						<a href="#"></a>
@@ -94,11 +94,10 @@
 		<div id="page2" class="content">
 			<div class="container_12">
 				<div class="grid_12">
-					
 					<div class="connect">
 						<h3>Присоединиться</h3>
 					</div>	
-					<div class="text2">
+					<!--<div class="text2">
 						<a href="/registration" class="underlined">Зарегистрируйтесь</a> и создайте свой проект прямо сейчас!
 					</div>
 					<div class="text2">
@@ -106,10 +105,40 @@
 					</div>
 					<div class="text2">
 						<?php
-							echo '<a class="underlined" href="/project/'.$this->vars[0].' ">Попробуйте систему</a>'; 
+							//echo '<a class="underlined" href="/project/'.$this->vars[0].' ">Попробуйте систему</a>'; 
 						?> 
 						в качетсве гостя.
-					</div>			
+					</div>			-->
+					<div class="register_from">
+
+						<div class="form_container one">
+							<form action="/registration" method="post" id="register">
+								<label>Имя:</label><br/>
+								<input class="input-text base_input" name="name" type="text" size="25"  id="reg_name" /><br/>
+								<label>Логин:</label><br/>
+								<input class="input-text base_input" name="login" type="text" size="25" id="reg_login" /><br/>
+								<label>E-mail:</label><br/>
+								<input class="input-text base_input" name="email" type="text" size="25" id="reg_email" /><br/>
+								<label>Пароль:</label><br/>
+								<input class="input-text base_input" name="password" type="password" size="25" id="reg_pass" /><br/><br/>
+								<div class="err_msg one"></div>
+								<div class="btns center gray" id="main_submit" onclick=" main_submit_f('register'); "><a id="link1">Зарегистрироваться</a></div>		
+							</form>
+						</div>
+
+						<div class="form_container two">
+							<form action="/registration" method="post" id="auth">
+								<label>Логин:</label><br/>
+								<input class="input-text base_input" name="login" type="text" size="25" id="auth_login" /><br/>
+								<label>Пароль:</label><br/>
+								<input class="input-text base_input" name="password" type="password" size="25" id="auth_pass" /><br/><br/>
+								<div class="err_msg two"></div>
+								<div class="btns center gray big_margin" id="main_submit" onclick=" main_submit_f('auth'); "><a id="link2">Войти</a></div>		
+							</form>
+						</div>
+
+							<div class="clear"></div>
+					</div>
 				</div>
 			</div>
 		</div>

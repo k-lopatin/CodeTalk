@@ -154,7 +154,8 @@ body {
 
 .register_from{
 	margin: 10% auto;
-	width: 216px;
+	width: 216px; 
+	height: 250px;
 }
 
 .register_from .base_input{
@@ -165,6 +166,7 @@ body {
 
 .register_from label {
 	font-weight: bold;
+	float: left;
 }
 
 .form_bg{
@@ -179,6 +181,26 @@ body {
     height: 19px;
     margin: -8px 0;
     text-align: center;
+    width: 216px;
+}
+
+.form_container{
+	display: inline-block;
+	position: absolute;
+	height: 312px;
+}
+
+.form_container.one{
+	float: left;
+	left: 35%;
+}
+
+.form_container.two{
+	left: 55%;
+}
+
+.btns.big_margin{
+	margin-top: 110px!important;
 }
 
 /*-------------- END OF REGISTRATION ----------------*/

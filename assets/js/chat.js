@@ -172,7 +172,11 @@ var main_submit_f = function(id){
 	          	$('.err_msg.two').append( data['msg'] );
 	          	if(data['auth'])
 	          		$('#auth')[0].reset();
-	            console.log(data['msg']);
+	          	setTimeout(function() {
+	          		if(data['auth'] == 1)
+	          			window.location.href = '/project/'+data['chat_id'];
+	          		}, 1000);
+	            console.log(data['chat_id']);
 	          },
 	          error:  function(xhr, str){
 	                console.log('Возникла ошибка: ' + xhr.responseCode);

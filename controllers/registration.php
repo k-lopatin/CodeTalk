@@ -11,9 +11,15 @@ class RegisterController extends Controller {
         $this->vars['msg'] = '';
 		if( $_SERVER["REQUEST_METHOD"]=="POST" ){
 
-			$this->vars['name'] = $_POST['name'];
-			$this->vars['login'] = $_POST['login'];
-			$this->vars['email'] = $_POST['email'];
+            if(isset($_POST['name'])){
+			    $this->vars['name'] = $_POST['name'];
+            }
+            if(isset($_POST['login'])){
+			    $this->vars['login'] = $_POST['login'];
+            }
+            if(isset($_POST['email'])){
+			    $this->vars['email'] = $_POST['email'];
+            }
             $this->vars['is_reg'] = 0;
 
 			if( !empty($_POST['name']) && !empty($_POST['login']) && !empty($_POST['password']) && !empty(!empty($_POST['email'])) 

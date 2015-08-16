@@ -128,6 +128,7 @@
 
 						<div class="form_container two">
 							<form action="/registration" method="post" id="auth">
+								<input class="input-text base_input" name="chat_id" type="hidden" value="<?=$this->vars[0] ?>" size="25" id="chat_id" />
 								<label>Логин:</label><br/>
 								<input class="input-text base_input" name="login" type="text" size="25" id="auth_login" /><br/>
 								<label>Пароль:</label><br/>

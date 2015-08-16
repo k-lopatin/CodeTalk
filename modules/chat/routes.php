@@ -39,5 +39,11 @@ function get($q){
 			$curController->get_time($_GET['curr_id']);
 			break;
 		}
+		case 'search':{
+			require_once('controllers/chat.php');
+			$curController = new ChatController();
+			$curController->search($_GET['curr_id'], $_GET['val']);
+			break;
+		}
 	}
 }

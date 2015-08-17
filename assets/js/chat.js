@@ -1,4 +1,5 @@
 var curr_time = 0;
+var curr_search_val = "";
 $(document).ready(function(){
 	$(window).unload(function(){
       console.log("Событие unload было вызвано!");
@@ -24,7 +25,7 @@ $(document).ready(function(){
    				} );
 
 
-			if(data[0] > curr_time){
+			if(data[0] > curr_time && $( "#search" ).val() == ""){
 				chatUpdate();
 				curr_time = data[0];
 			}
@@ -35,7 +36,6 @@ $(document).ready(function(){
 
 		$.get( "/chat_api/check_write?curr_login="+$( "#username" ).val()+"&id="+curr_id[4], function(data){
 			//$('.is_write').empty();
-			console.log(data);
 			if(data == 1){
 				$('.is_write img').show();
 				$( ".is_write img" ).animate({
@@ -58,10 +58,33 @@ $(document).ready(function(){
 
 		} );
 
+		var new_search_val = $( "#search" ).val();
+		if(new_search_val == "" && curr_search_val != ""){
+			chatUpdate();
+		}
+		if(new_search_val == ""){
+			curr_search_val = new_search_val;			
+		}
+		if( new_search_val != curr_search_val && new_search_val != "") {
+			curr_search_val = new_search_val;
+			$.get( "/chat_api/search?curr_id="+curr_id[4]+"&val="+curr_search_val, function(data){
+				if(data == ""){
+					$('#chat_box').html('<div id = "not_found">По вашему запросу ничего не найдено</div>');
+				} else {
+					$('#chat_box').html( data );
+				
+					chat_box = document.getElementById('chat_box');
+					chat_box.scrollTop = chat_box.scrollHeight;
+				}
+
+			} );
+		}
+
 	}, 100 );
 
 	$('#new_msg').bind("enterKey", function(e){
 		msg = $('#new_msg').val();
+
 		$('#new_msg').val('');
 
 		name = $('#username').val();
@@ -69,7 +92,7 @@ $(document).ready(function(){
 		var curr_id = window.location.href;
 		curr_id = curr_id.split('/');
 
-   		if( msg != '' ){
+   		if( msg != '\n' ){
    			$.post("/chat_api/add/"+curr_id[4], 
    				{ username: name,
    				  message: msg } );
@@ -99,7 +122,9 @@ $(document).ready(function(){
 
 })
 window.onload = function () {
-	chatUpdate();
+	if( $( "#search" ).val() == "" ){
+		chatUpdate();
+	}
 	//setTimeout(chatUpdate(), 1000);
 }
 
@@ -114,4 +139,48 @@ var chatUpdate = function(){
 			chat_box.scrollTop = chat_box.scrollHeight;
 
 		} );
+}
+
+var main_submit_f = function(id){
+	if(id == 'register'){
+		var msg = $('#register').serialize();
+		$.ajax({
+	          type: 'POST',
+	          url: 'registration',
+	          data: msg,
+	          success: function(data) {
+	          	data = JSON.parse(data);
+	          	$('.err_msg').empty();
+	          	$('.err_msg.one').append( data['msg'] );
+	          	if(data['is_reg'])
+	          		$('#register')[0].reset();
+	            console.log(data['is_reg']);
+	          },
+	          error:  function(xhr, str){
+	                console.log('Возникла ошибка: ' + xhr.responseCode);
+	            }
+	        });
+	} else {
+		var msg = $('#auth').serialize();
+		$.ajax({
+	          type: 'POST',
+	          url: 'auth',
+	          data: msg,
+	          success: function(data) {
+	          	data = JSON.parse(data);
+	          	$('.err_msg').empty();
+	          	$('.err_msg.two').append( data['msg'] );
+	          	if(data['auth'])
+	          		$('#auth')[0].reset();
+	          	setTimeout(function() {
+	          		if(data['auth'] == 1)
+	          			window.location.href = '/project/'+data['chat_id'];
+	          		}, 1000);
+	            console.log(data['chat_id']);
+	          },
+	          error:  function(xhr, str){
+	                console.log('Возникла ошибка: ' + xhr.responseCode);
+	            }
+	        });
+	}
 }

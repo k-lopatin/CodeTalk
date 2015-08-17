@@ -39,7 +39,7 @@ body {
 
 /*----------------- CHAT VIEW -----------------*/
 #chat_view {
-	background: #0079BF;
+	background: #B8D6F6;
 }
 
 /*----------------- BOARD ---------------------*/
@@ -124,7 +124,7 @@ body {
 
 #add_msg {
 	width: 590px;
-	margin: 10px auto;
+	margin: 10px 0;
 }
 #new_msg {
 	display: block;
@@ -146,4 +146,80 @@ body {
 	height: 10px;
 	display: none;
 }
+
+#search {
+	background: url(/assets/images/loupe.png) no-repeat #fff;
+	background-size: 16px 16px;
+	background-position: 2px;
+	padding: 5px 20px;	
+}
+
+.base_input{
+	height: 15px;
+	border: none;
+	padding: 5px;	
+}
+
+#not_found {
+	text-align: center;
+  	color: #777;
+  	margin-top: 50%;
+}
 /*---------------- END OF CHAT ----------------------*/
+
+
+/*---------------- REGISTRATION ---------------------*/
+
+
+.register_from{
+	margin: 10% auto;
+	width: 216px; 
+	height: 250px;
+}
+
+.register_from .base_input{
+	border: 1px solid #3c7f9f!important;
+	margin: 2px 0;
+    height: 20px;
+}
+
+.register_from label {
+	font-weight: bold;
+	float: left;
+}
+
+.form_bg{
+	background: #3f9fc9;
+	position: absolute;
+	height: 100%;	
+	width: 100%;
+}
+
+.err_msg {
+    font-weight: bold;
+    height: 19px;
+    margin: -8px 0;
+    text-align: center;
+    width: 216px;
+}
+
+.form_container{
+	display: inline-block;
+	position: absolute;
+	height: 312px;
+}
+
+.form_container.one{
+	float: left;
+	left: 35%;
+}
+
+.form_container.two{
+	left: 55%;
+}
+
+.btns.big_margin{
+	margin-top: 110px!important;
+}
+
+/*-------------- END OF REGISTRATION ----------------*/

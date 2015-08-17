@@ -36,6 +36,11 @@ switch( $q[0] ){
 		$curController = new RegisterController();
 		break;
 	}
+	case 'auth': {		
+		require_once('controllers/auth.php');
+		$curController = new AuthController();
+		break;
+	}
 }
 
 if(!isset($_SESSION)){

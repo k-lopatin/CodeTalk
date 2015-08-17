@@ -30,22 +30,24 @@ class ChatController extends Controller {
 
 	} 
 
-	private function msgView( $msgArr, $prevMsgArr ){
+	private function msgView( $msgArr = '', $prevMsgArr ){
+		if($msgArr != ''){
+			echo '<span class="date">' . $msgArr[0] . '</span> ';
 
-		echo '<span class="date">' . $msgArr[0] . '</span> ';
-
-		if( $msgArr[1] != $prevMsgArr[1] ){
-			echo '<span class="name">' . $msgArr[1] . '</span> ';
-		}		
-		echo '<span class="message">' . $msgArr[2] . '</span> ';
-
-		echo '<div class="clear"></div>';
+			if( $msgArr[1] != $prevMsgArr[1] && isset($msgArr[1])){
+				echo '<span class="name">' . $msgArr[1] . '</span> ';
+			}	
+			if( isset($msgArr[2])){	
+				echo '<span class="message">' . preg_replace("#(https?|ftp)://\S+[^\s.,>)\];'\"!?]#",'<a href="\\0">\\0</a>',$msgArr[2]) . '</span> ';
+			}
+			echo '<div class="clear"></div>';
+		}
 
 	}
 
 	private function parseMsg( $msg ){
 		$msgArr = explode( ' ', $msg, 3 );
-
+		//echo $msgArr[0];
 		$msgArr[0] = date('H:i:s', $msgArr[0]);
 
 		return $msgArr;
@@ -72,7 +74,7 @@ class ChatController extends Controller {
 
 			$msg = $_POST['message'];
 
-			$str = $time . ' ' . $username . ' ' . $msg;
+			$str = $time . ' ' . htmlspecialchars($username) . ' ' . htmlspecialchars($msg);
 
 			$file = $this->openChatFileToWrite();
 
@@ -176,6 +178,35 @@ class ChatController extends Controller {
 				echo '0';
 			}
 		} else {
+			echo 'error';
+		}
+	}
+
+	function search($id = '', $val = ''){
+		if($id != '' ){
+			if($val != ''){
+				$this->chatId = $id;
+
+				$chatArr = $this->openChatFileArray();
+				$prevMsgArr = array('', '', '');
+				if($chatArr != -1){
+					foreach( $chatArr as $msg ){
+
+						$msgArr = $this->parseMsg( $msg );
+						$pos = strpos($msgArr[2], $val);
+						
+
+						if($pos !== false){
+							$this->msgView( $msgArr, $prevMsgArr );
+
+							$prevMsgArr = $msgArr;						
+						}
+
+					}
+				}
+			}
+		} else {
+			// @todo normal error system
 			echo 'error';
 		}
 	}

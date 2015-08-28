@@ -34,7 +34,7 @@ body {
 #container {
 	width: 1400px;
 	height: 800px;
-	margin: 50px auto;
+	margin: 120px auto;
 }
 
 /*----------------- CHAT VIEW -----------------*/
@@ -83,6 +83,7 @@ body {
 	margin: 10px auto;
 	border: 1px #fff solid;
 	background: #fff;
+	color: black;
 }
 
 #chat_box .date {
@@ -92,15 +93,16 @@ body {
 	font-size: 12px;
 }
 #chat_box .name {
-	margin: 0 10px 0 0;
-	color: #44b;
-	font-size: 15px;
-	font-weight: bold;
+    margin: 10px 0 0 10px;
+    color: #44b;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
 }
 #chat_box .message {	
 	display: block;
-	margin: 10px 30px;
-	font-size: 14px;
+	margin: 1px 30px;
+	font-size: 12px;
 }
 
 #add_msg {

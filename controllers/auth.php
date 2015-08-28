@@ -34,7 +34,7 @@ class AuthController extends Controller {
             			$data = mysqli_fetch_assoc($res);
             			if ($data['password'] == $password) {
                 			$_SESSION['auth'] = 1;
-                			$_SESSION['login'] = $login;
+                			$_SESSION['curr_login'] = $login;
                 			$this->vars['auth'] = 1;
                 			$this->vars['login'] = $login;
 							$this->vars['msg'] = "Привет," . $login; 

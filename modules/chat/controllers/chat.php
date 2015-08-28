@@ -32,11 +32,12 @@ class ChatController extends Controller {
 
 	private function msgView( $msgArr = '', $prevMsgArr ){
 		if($msgArr != ''){
-			echo '<span class="date">' . $msgArr[0] . '</span> ';
-
+			//print_r($msgArr);
 			if( $msgArr[1] != $prevMsgArr[1] && isset($msgArr[1])){
 				echo '<span class="name">' . $msgArr[1] . '</span> ';
 			}	
+			echo '<span class="date">' . $msgArr[0] . '</span> ';
+
 			if( isset($msgArr[2])){	
 				echo '<span class="message">' . preg_replace("#(https?|ftp)://\S+[^\s.,>)\];'\"!?]#",'<a href="\\0">\\0</a>',$msgArr[2]) . '</span> ';
 			}
@@ -47,8 +48,12 @@ class ChatController extends Controller {
 
 	private function parseMsg( $msg ){
 		$msgArr = explode( ' ', $msg, 3 );
+		$msgArr[0] = preg_replace("/[^0-9]/", '', $msgArr[0]);
 		//echo $msgArr[0];
-		$msgArr[0] = date('H:i:s', $msgArr[0]);
+		/*
+			К дате преписывается последний символ сообщения и из-за этого вылетает ошибка. Обязательно найти и исправить.
+		*/
+		$msgArr[0] = date('H:i:s', preg_replace("/[^0-9]/", '', $msgArr[0]));
 
 		return $msgArr;
 	}
@@ -74,7 +79,7 @@ class ChatController extends Controller {
 
 			$msg = $_POST['message'];
 
-			$str = $time . ' ' . htmlspecialchars($username) . ' ' . htmlspecialchars($msg);
+			$str = $time. ' ' . htmlspecialchars($username) . ' ' . htmlspecialchars($msg);
 
 			$file = $this->openChatFileToWrite();
 

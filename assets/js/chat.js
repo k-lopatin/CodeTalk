@@ -67,6 +67,7 @@ $(document).ready(function(){
 		}
 		if( new_search_val != curr_search_val && new_search_val != "") {
 			curr_search_val = new_search_val;
+			console.log(curr_search_val);
 			$.get( "/chat_api/search?curr_id="+curr_id[4]+"&val="+curr_search_val, function(data){
 				if(data == ""){
 					$('#chat_box').html('<div id = "not_found">По вашему запросу ничего не найдено</div>');
@@ -173,8 +174,10 @@ var main_submit_f = function(id){
 	          	if(data['auth'])
 	          		$('#auth')[0].reset();
 	          	setTimeout(function() {
-	          		if(data['auth'] == 1)
-	          			window.location.href = '/project/'+data['chat_id'];
+	          		if(data['auth'] == 1){
+	          			window.location.href = '/project/'+data['chat_id'];	
+				   		}	
+
 	          		}, 1000);
 	            console.log(data['chat_id']);
 	          },

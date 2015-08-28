@@ -630,3 +630,6 @@ footer a:hover {
 .underlined{
 	text-decoration: underline;
 }
+.chat_footer{
+	background-color: #334960;
+}
